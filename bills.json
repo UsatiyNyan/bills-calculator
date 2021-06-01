@@ -1,0 +1,35 @@
+{
+    "bills": [
+        {
+            "month": "April",
+            "sum": "0.0",
+            "water": {
+                "cold": 677,
+                "hot": 520
+            }
+        },
+        {
+            "month": "May",
+            "sum": "1270.32",
+            "water": {
+                "cold": 681.81,
+                "hot": 523.89
+            }
+        },
+        {
+            "month": "June",
+            "sum": "1895.38",
+            "water": {
+                "cold": 688,
+                "hot": 530
+            }
+        }
+    ],
+    "rates": {
+        "water": {
+            "cold": 42.3,
+            "drain": 30.9,
+            "hot": 205.15
+        }
+    }
+}
