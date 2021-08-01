@@ -1,7 +1,7 @@
 {
     "bills": [
         {
-            "month": "April",
+            "month": "March",
             "sum": "0.0",
             "water": {
                 "cold": 677,
@@ -9,7 +9,7 @@
             }
         },
         {
-            "month": "May",
+            "month": "April",
             "sum": "1270.32",
             "water": {
                 "cold": 681.81,
@@ -17,15 +17,64 @@
             }
         },
         {
-            "month": "June",
+            "electricity": {
+                "t1": 888,
+                "t2": 845,
+                "t3": 1198
+            },
+            "month": "May",
             "sum": "1895.38",
             "water": {
                 "cold": 688,
                 "hot": 530
             }
+        },
+        {
+            "electricity": {
+                "t1": 929,
+                "t2": 911,
+                "t3": 1245
+            },
+            "month": "June",
+            "sum": "2680",
+            "water": {
+                "cold": 699,
+                "hot": 535
+            }
+        },
+        {
+            "electricity": {
+                "t1": 969,
+                "t2": 963,
+                "t3": 1301
+            },
+            "month": "July",
+            "sum": "2987.45",
+            "water": {
+                "cold": 714,
+                "hot": 540
+            }
+        },
+        {
+            "electricity": {
+                "t1": 1004,
+                "t2": 1012,
+                "t3": 1354
+            },
+            "month": "August",
+            "sum": "2653.21",
+            "water": {
+                "cold": 722,
+                "hot": 546
+            }
         }
     ],
     "rates": {
+        "electricity": {
+            "t1": 6.79,
+            "t2": 2.32,
+            "t3": 5.66
+        },
         "water": {
             "cold": 42.3,
             "drain": 30.9,

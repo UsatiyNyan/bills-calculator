@@ -26,7 +26,10 @@ BillsWindow::BillsWindow(QWidget *parent) :
     rates_.water.cold = water_rates_json["cold"].toDouble();
     rates_.water.drain = water_rates_json["drain"].toDouble();
 
-//    auto &electricity_rates_json TODO
+    QJsonValue electricity_rates_json = rates_json["electricity"];
+    rates_.electricity.t1 = electricity_rates_json["t1"].toDouble();
+    rates_.electricity.t2 = electricity_rates_json["t2"].toDouble();
+    rates_.electricity.t3 = electricity_rates_json["t3"].toDouble();
 }
 
 BillsWindow::~BillsWindow() {
@@ -37,19 +40,29 @@ BillsWindow::~BillsWindow() {
 void BillsWindow::on_pushButton_clicked() {
     bool ok = false;
     dec::decimal<2> water_hot{ui_->textEdit_water_hot->toPlainText().toDouble(&ok)};
-    if (!ok) { return; }
+    if (!ok) {
+        return;
+    }
 
     dec::decimal<2> water_cold{ui_->textEdit_water_cold->toPlainText().toDouble(&ok)};
-    if (!ok) { return; }
+    if (!ok) {
+        return;
+    }
 
-//    dec::decimal<2> electricity_t1{ui_->textEdit_electricity_t1->toPlainText().toDouble(&ok)};
-    if (!ok) { return; }
+    dec::decimal<2> electricity_t1{ui_->textEdit_electricity_t1->toPlainText().toDouble(&ok)};
+    if (!ok) {
+        return;
+    }
 
-//    dec::decimal<2> electricity_t2{ui_->textEdit_electricity_t2->toPlainText().toDouble(&ok)};
-    if (!ok) { return; }
+    dec::decimal<2> electricity_t2{ui_->textEdit_electricity_t2->toPlainText().toDouble(&ok)};
+    if (!ok) {
+        return;
+    }
 
-//    dec::decimal<2> electricity_t3{ui_->textEdit_electricity_t3->toPlainText().toDouble(&ok)};
-    if (!ok) { return; }
+    dec::decimal<2> electricity_t3{ui_->textEdit_electricity_t3->toPlainText().toDouble(&ok)};
+    if (!ok) {
+        return;
+    }
 
     auto bills = bills_json_["bills"].toArray();
     auto last_bill = bills.last();
@@ -57,12 +70,18 @@ void BillsWindow::on_pushButton_clicked() {
     dec::decimal<2> last_hot_water_bill{last_water_bill["hot"].toDouble()};
     dec::decimal<2> last_cold_water_bill{last_water_bill["cold"].toDouble()};
 
+    auto last_electricity_bill = last_bill["electricity"];
+    dec::decimal<2> last_electricity_t1_bill{last_electricity_bill["t1"].toDouble()};
+    dec::decimal<2> last_electricity_t2_bill{last_electricity_bill["t2"].toDouble()};
+    dec::decimal<2> last_electricity_t3_bill{last_electricity_bill["t3"].toDouble()};
+
     dec::decimal<2> sum_to_pay{
             (water_hot - last_hot_water_bill) * rates_.water.hot +
             (water_cold - last_cold_water_bill) * rates_.water.cold +
-            ((water_hot - last_hot_water_bill) +
-             (water_cold - last_cold_water_bill)) * rates_.water.drain
-            // TODO: electricity
+            ((water_hot - last_hot_water_bill) + (water_cold - last_cold_water_bill)) * rates_.water.drain +
+            (electricity_t1 - last_electricity_t1_bill) * rates_.electricity.t1 +
+            (electricity_t2 - last_electricity_t2_bill) * rates_.electricity.t2 +
+            (electricity_t3 - last_electricity_t3_bill) * rates_.electricity.t3
     };
 
     ui_->label_calculated->setText(QString::number(sum_to_pay.getUnbiased() / 100) + "." +
@@ -73,11 +92,18 @@ void BillsWindow::on_pushButton_clicked() {
     bill["month"] = QDate::currentDate().toString("MMMM");
     bill["sum"] = QString::number(sum_to_pay.getUnbiased() / 100) + "." +
                   QString::number(sum_to_pay.getUnbiased() % 100);
+
     QJsonObject bill_water;
     bill_water["hot"] = water_hot.getAsDouble();
     bill_water["cold"] = water_cold.getAsDouble();
     bill["water"] = bill_water;
-    // TODO: electricity
+
+    QJsonObject bill_electricity;
+    bill_electricity["t1"] = electricity_t1.getAsDouble();
+    bill_electricity["t2"] = electricity_t2.getAsDouble();
+    bill_electricity["t3"] = electricity_t3.getAsDouble();
+    bill["electricity"] = bill_electricity;
+
     bills.push_back(bill);
     bills_json_["bills"] = bills;
 }
