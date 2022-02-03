@@ -67,18 +67,96 @@
                 "cold": 722,
                 "hot": 546
             }
+        },
+        {
+            "electricity": {
+                "t1": 1049,
+                "t2": 1089,
+                "t3": 1415
+            },
+            "month": "October",
+            "sum": "2451.6",
+            "water": {
+                "cold": 730,
+                "hot": 550
+            }
+        },
+        {
+            "electricity": {
+                "t1": 1083,
+                "t2": 1156,
+                "t3": 1458
+            },
+            "month": "November",
+            "sum": "1115.66",
+            "water": {
+                "cold": 736,
+                "hot": 550
+            }
+        },
+        {
+            "electricity": {
+                "t1": 1083,
+                "t2": 1156,
+                "t3": 1458
+            },
+            "month": "November",
+            "sum": "0",
+            "water": {
+                "cold": 0,
+                "hot": 0
+            }
+        },
+        {
+            "electricity": {
+                "t1": 1128,
+                "t2": 1218,
+                "t3": 1512
+            },
+            "month": "December",
+            "sum": "3027.90",
+            "water": {
+                "cold": 7,
+                "hot": 7
+            }
+        },
+        {
+            "electricity": {
+                "t1": 1167,
+                "t2": 1276,
+                "t3": 1562
+            },
+            "month": "February",
+            "sum": "",
+            "water": {
+                "cold": 14,
+                "hot": 15
+            }
+        },
+        {
+            "electricity": {
+                "t1": 1199,
+                "t2": 1329,
+                "t3": 1601
+            },
+            "month": "February",
+            "sum": "2185.92",
+            "water": {
+                "cold": 19,
+                "hot": 20
+            }
         }
     ],
     "rates": {
         "electricity": {
-            "t1": 6.79,
-            "t2": 2.32,
-            "t3": 5.66
+            "t1": 7.1,
+            "t2": 2.48,
+            "t3": 5.92
         },
         "water": {
-            "cold": 42.3,
-            "drain": 30.9,
-            "hot": 205.15
+            "cold": 43.57,
+            "drain": 32.02,
+            "hot": 211.67
         }
     }
 }
